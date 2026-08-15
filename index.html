@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>an offer for you.</title>
+    <link href="/styles/reset.css" rel="stylesheet" />
+    <link href="/styles/style.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div>
+        <video id="visuals">
+            <source src="/resources/media/thewindow.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <div class="dialogue-with-visuals">
+        <p id="message">hear the sounds, view it's seizures. <br> from above, or from anywhere of it's time as a place. <br> <br> it's inadequate to talk while eating. <br> so be it, it's intestines you shall consume, <br> <br> with no words, but a tune. </p>
+        <button id="answerBtn" onclick="onAnswered()"><p>> i wholeheartly agree on these conditions. <br> and as for you, i give my blessings.</p></button>
+    </div>
+</body>
+
+</html>
+
+
+<script>
+
+var video = document.getElementById("visuals");
+var message = document.getElementById("message");
+const answerfx = new Audio("/resources/audio/interact.wav");
+var btn = document.getElementById("answerBtn");
+
+function onAnswered() {
+    video.play();
+    answerfx.play();
+    message.innerHTML = "* your throat tightens, it's hard to talk."
+    btn.innerHTML = '(you do not have the right of speach this moment, nor at any point before or after this message...)';
+    document.title = "at last, a breeze"
+
+    video.addEventListener('ended',function() {window.location.href = './pages/end.html';})
+}
+</script>

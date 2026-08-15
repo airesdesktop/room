@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>end of line.</title>
+    <link href="/styles/reset.css" rel="stylesheet" />
+    <link href="/styles/style.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="dialogue">
+        <p id="message">end of line.</p>
+        <!-- Use a button to pause/play the video with JavaScript -->
+        <button id="answerBtn" onclick="onAnswered()">> i'm afraid... i haven't understood your message.</button>
+    </div>
+</body>
+</html>
+
+<script>
+    // Get the video
+    var message = document.getElementById("message");
+
+    const answerfx = new Audio("/resources/audio/interact.wav");
+
+    // Get the button
+    var btn = document.getElementById("answerBtn");
+
+    // Pause and play the video, and change the button text
+    function onAnswered() {
+        message.innerHTML = "and we will keep it that way. <br> <br> * your throat tightens once again, but there was no meal this time."
+        answerfx.play();
+        btn.innerHTML = '(you do not have the right of speach at this moment.)';
+    }
+</script>
