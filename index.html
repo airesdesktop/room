@@ -47,6 +47,7 @@
     var btn = document.getElementById("btn");
     var logo = document.getElementById("logo");
     var foot = document.getElementById("foot");
+    var unlocked = false;
 
     btn.addEventListener("click", () => {
         btn.style.border = "inset";
@@ -61,11 +62,14 @@
         banner.style.background = "url('resources/images/bg-alt.jpg')";
         message.innerHTML = "0x00000803 <br> HOST NOT FOUND"
         document.title = "WHO ARE YOU?";
-        redirect();
+        unlocked = true;
+        redirect(unlocked);
     };
 
-    function redirect() {
-        setTimeout(function() {window.location.href = 'pages/offer.html'}, 100);
+    function redirect(unlocked) {
+        if (unlocked) {
+            setTimeout(function() {window.location.href = 'pages/offer.html'}, 100);
+        }
     }
 
 
