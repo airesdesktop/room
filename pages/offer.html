@@ -1,37 +1,31 @@
 <!DOCTYPE html>
 <html lang="en" id="page">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Macrosystems Web</title>
-        <link rel="icon" type="image/x-icon" href="resources/logo.ico">
-        <link href="styles/reset.css" rel="stylesheet" />
-        <link href="styles/ms-style.css" rel="stylesheet" />
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>an offer for you.</title>
+    <link rel="icon" type="image/x-icon" href="../resources/logo.ico">
+    <link href="../styles/reset.css" rel="stylesheet" />
+    <link href="../styles/style.css" rel="stylesheet" />
+</head>
 
-    <body>
-        <div id="banner">
-            <img src="resources/images/logo.webp" alt="MACROSYSTEMS CORPORATION" id="logo">
-        </div>
+<body>
+    <div>
+        <video id="visuals">
+            <source src="../resources/media/themessage_thewindow_cut_higher.mp4" type="video/mp4">
+        </video>
+        <img src="../resources/sprites/blank.jpg" alt="nothing to see here." id="hider"/>
+    </div>
 
-        <section id="dialogue">
-            <section id="dialogue-box">
-                <div>
-                    <p id="message">404<br>page not found!</p>
-                </div>
-                <div id="btn-area">
-                    <button onclick="unlock()" id="btn"><p>back to homepage</p></button>
-                </div>
-            </section>
-        </section>
+    <div class="dialogue-with-visuals">
+        <p id="message">i have an offer for you. <br> <br> it's intestines you shall consume, <br> with no words, but a tune. <br> <br> it's inadequate to talk while eating.</p>
+        <button id="answerBtn" onclick="onAnswered()"><p>> i wholeheartly agree on these conditions.</p></button>
+    </div>
 
-        <footer id="foot">
-            <div>
-                <p>MACROSYSTEMS INCORPORATED, SINCE 1993</p>
-            </div>
-        </footer>
-    </body>
+    <img src="../resources/sprites/cursor-point.png" alt="" class="cursor">
+    <img src="../resources/sprites/cursor-tail.png" alt="" class="cursor-tail">
+</body>
 
 </html>
 
@@ -40,31 +34,31 @@
 
     //page
     var page = document.getElementById("page");
+    
+    var cursorOffset = 20;
 
+    //cursors
+    const cursor = document.querySelector(".cursor");
+    const cursorTail = document.querySelector(".cursor-tail");
+
+    var video = document.getElementById("visuals");
     var message = document.getElementById("message");
-    const clickfx = new Audio("/resources/audio/step.wav");
-    var banner = document.getElementById("banner");
-    var btn = document.getElementById("btn");
-    var logo = document.getElementById("logo");
+    const answerfx = new Audio("../resources/audio/interact.wav");
+    var btn = document.getElementById("answerBtn");
+    var hider = document.getElementById("hider");
 
-    btn.addEventListener("click", () => {
-        btn.style.border = "inset";
-    })
 
     //functions
-    function unlock() {
-        clickfx.play();
-        message.style.color = "red";
-        logo.src = "resources/sprites/logo-symbolic.png"
-        banner.style.background = "url('resources/images/bg-alt.jpg')";
-        message.innerHTML = "666 <br> HOST NOT FOUND"
-        document.title = "WHO ARE YOU?";
-        redirect();
+    function onAnswered() {
+        answerfx.play();
+        video.play();
+        video.volume = 0.7;
+        message.innerHTML = "* your throat tightens, it's hard to talk."
+        btn.innerHTML = '(you do not have the right of speach this moment, nor at any point before or after this message...)';
+        document.title = "at last, a breeze";
+        hider.remove();
+        video.addEventListener('ended',function() {window.location.href = '../pages/end.html';})
     };
-
-    function redirect() {
-        setTimeout(function() {window.location.href = 'pages/offer.html'}, 100);
-    }
 
 
     //check if mouse is on the page

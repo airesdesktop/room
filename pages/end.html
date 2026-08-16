@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="page">
 
 <head>
     <meta charset="UTF-8">
@@ -23,30 +23,54 @@
 </html>
 
 <script>
-    // Get the video
+    //page
+    var page = document.getElementById("page");
+    
+    var cursorOffset = 20;
+
+    //cursors
+    const cursor = document.querySelector(".cursor");
+    const cursorTail = document.querySelector(".cursor-tail");
+
     var message = document.getElementById("message");
-
     const answerfx = new Audio("../resources/audio/interact.wav");
-
-    // Get the button
     var btn = document.getElementById("answerBtn");
 
-    // Pause and play the video, and change the button text
+    //functions
     function onAnswered() {
         message.innerHTML = "and we will keep it that way, in proximum. <br> <br> * your throat tightens once again, but there was no meal this time."
         answerfx.play();
         btn.innerHTML = '(you do not have the right of speach at this moment.)';
-    }
+    };
 
-        var cursorOffset = 20;
 
-    const cursor = document.querySelector(".cursor");
-
-    document.addEventListener("mousemove", (e) => {
-        cursor.style.left = e.pageX + cursorOffset + "px";
-        cursor.style.top = e.pageY + cursorOffset + "px";
+    //check if mouse is on the page
+    page.addEventListener("mouseenter", () => {
+        cursorTail.style.width = "30px";
+        cursorTail.style.height = "30px";
+        cursor.style.width = "60px";
+        cursor.style.height = "60px";
+    });
+    page.addEventListener("mouseleave", () => {
+        cursorTail.style.width = "0px";
+        cursorTail.style.height = "0px";
+        cursor.style.width = "0px";
+        cursor.style.height = "0px";
     });
 
+
+    //mouse movement
+    document.addEventListener("mousemove", (e) => {
+        //cursor pointer
+        cursor.style.left = e.pageX + cursorOffset + "px";
+        cursor.style.top = e.pageY + cursorOffset + "px";
+        //cursor tail
+        cursorTail.style.left = e.pageX + cursorOffset + "px";
+        cursorTail.style.top = e.pageY + cursorOffset + "px";
+    });
+
+
+    //mouse clicks, horribly separated for now...
     document.addEventListener("mousedown", () => {
         cursor.style.width = "50px";
         cursor.style.height = "50px";
@@ -55,7 +79,6 @@
         cursor.style.left = e.pageX + cursorOffset + "px";
         cursor.style.top = e.pageY + cursorOffset + "px";
     });
-
     document.addEventListener("mouseup", () => {
         cursor.style.width = "60px";
         cursor.style.height = "60px";
@@ -65,40 +88,32 @@
         cursor.style.top = e.pageY + cursorOffset + "px";
     });
 
-    const cursorTail = document.querySelector(".cursor-tail");
-
-    document.addEventListener("mousemove", (e) => {
-        cursorTail.style.left = e.pageX + cursorOffset + "px";
-        cursorTail.style.top = e.pageY + cursorOffset + "px";
-    });
-
     document.addEventListener("mousedown", () => {
         cursorTail.style.width = "40px";
         cursorTail.style.height = "40px";
         cursorTail.style.transition = "all 0.002s ease";
         cursorTail.src = "../resources/sprites/cursor-tail-focus.png";
         cursorOffset = 0;
-        cursor.style.left = e.pageX + cursorOffset + "px";
-        cursor.style.top = e.pageY + cursorOffset + "px";
+        cursorTail.style.left = e.pageX + cursorOffset + "px";
+        cursorTail.style.top = e.pageY + cursorOffset + "px";
     });
-
     document.addEventListener("mouseup", () => {
         cursorTail.style.width = "30px";
         cursorTail.style.height = "30px";
         cursorTail.style.transition = "all 0.008s ease-out";
         cursorTail.src = "../resources/sprites/cursor-tail.png";
         cursorOffset = 20;
-        cursor.style.left = e.pageX + cursorOffset + "px";
-        cursor.style.top = e.pageY + cursorOffset + "px";
+        cursorTail.style.left = e.pageX + cursorOffset + "px";
+        cursorTail.style.top = e.pageY + cursorOffset + "px";
     });
 
+
+    //mouse on button
     btn.addEventListener('mouseover', function() {
         cursor.src = "../resources/sprites/cursor-point-hover.png";
-        cursorTail.src = "../resources/sprites/cursor-tail.png";
     });
-
     btn.addEventListener('mouseout', function() {
         cursor.src = "../resources/sprites/cursor-point.png";
-        cursorTail.src = "../resources/sprites/cursor-tail.png";
     });
+
 </script>
