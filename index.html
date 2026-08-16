@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>an offer for you.</title>
+    <link rel="icon" type="image/x-icon" href="/resources/logo.ico">
     <link href="/styles/reset.css" rel="stylesheet" />
     <link href="/styles/style.css" rel="stylesheet" />
 </head>
@@ -12,14 +13,18 @@
 <body>
     <div>
         <video id="visuals">
-            <source src="/resources/media/thewindow.mp4" type="video/mp4">
+            <source src="/resources/media/themessage_thewindow_cut_higher.mp4" type="video/mp4">
         </video>
+        <img src="/resources/sprites/blank.jpg" alt="nothing to see here." id="hider"/>
     </div>
 
     <div class="dialogue-with-visuals">
         <p id="message">hear the sounds, view it's seizures. <br> from above, or from anywhere of it's time as a place. <br> <br> it's inadequate to talk while eating. <br> so be it, it's intestines you shall consume, <br> <br> with no words, but a tune. </p>
         <button id="answerBtn" onclick="onAnswered()"><p>> i wholeheartly agree on these conditions. <br> and as for you, i give my blessings.</p></button>
     </div>
+    <img src="resources/sprites/cursor-point.png" alt="" class="cursor">
+
+    <img src="resources/sprites/cursor-tail.png" alt="" class="cursor-tail">
 </body>
 
 </html>
@@ -27,18 +32,85 @@
 
 <script>
 
-var video = document.getElementById("visuals");
-var message = document.getElementById("message");
-const answerfx = new Audio("/resources/audio/interact.wav");
-var btn = document.getElementById("answerBtn");
+    var video = document.getElementById("visuals");
+    var message = document.getElementById("message");
+    const answerfx = new Audio("/resources/audio/interact.wav");
+    var btn = document.getElementById("answerBtn");
+    var hider = document.getElementById("hider");
 
-function onAnswered() {
-    video.play();
-    answerfx.play();
-    message.innerHTML = "* your throat tightens, it's hard to talk."
-    btn.innerHTML = '(you do not have the right of speach this moment, nor at any point before or after this message...)';
-    document.title = "at last, a breeze"
+    function onAnswered() {
+        answerfx.play();
+        video.play();
+        video.volume = 0.7;
+        message.innerHTML = "* your throat tightens, it's hard to talk."
+        btn.innerHTML = '(you do not have the right of speach this moment, nor at any point before or after this message...)';
+        document.title = "at last, a breeze";
+        hider.remove();
+        video.addEventListener('ended',function() {window.location.href = './pages/end.html';})
+    };
 
-    video.addEventListener('ended',function() {window.location.href = './pages/end.html';})
-}
+    var cursorOffset = 20;
+
+    const cursor = document.querySelector(".cursor");
+
+    document.addEventListener("mousemove", (e) => {
+        cursor.style.left = e.pageX + cursorOffset + "px";
+        cursor.style.top = e.pageY + cursorOffset + "px";
+    });
+
+    document.addEventListener("mousedown", () => {
+        cursor.style.width = "50px";
+        cursor.style.height = "50px";
+        cursor.src = "/resources/sprites/cursor-point-focus.png";
+        cursorOffset = 0;
+        cursor.style.left = e.pageX + cursorOffset + "px";
+        cursor.style.top = e.pageY + cursorOffset + "px";
+    });
+
+    document.addEventListener("mouseup", () => {
+        cursor.style.width = "60px";
+        cursor.style.height = "60px";
+        cursor.src = "/resources/sprites/cursor-point.png";
+        cursorOffset = 20;
+        cursor.style.left = e.pageX + cursorOffset + "px";
+        cursor.style.top = e.pageY + cursorOffset + "px";
+    });
+
+    const cursorTail = document.querySelector(".cursor-tail");
+
+    document.addEventListener("mousemove", (e) => {
+        cursorTail.style.left = e.pageX + cursorOffset + "px";
+        cursorTail.style.top = e.pageY + cursorOffset + "px";
+    });
+
+    document.addEventListener("mousedown", () => {
+        cursorTail.style.width = "40px";
+        cursorTail.style.height = "40px";
+        cursorTail.style.transition = "all 0.002s ease";
+        cursorTail.src = "/resources/sprites/cursor-tail-focus.png";
+        cursorOffset = 0;
+        cursor.style.left = e.pageX + cursorOffset + "px";
+        cursor.style.top = e.pageY + cursorOffset + "px";
+    });
+
+    document.addEventListener("mouseup", () => {
+        cursorTail.style.width = "30px";
+        cursorTail.style.height = "30px";
+        cursorTail.style.transition = "all 0.008s ease-out";
+        cursorTail.src = "/resources/sprites/cursor-tail.png";
+        cursorOffset = 20;
+        cursor.style.left = e.pageX + cursorOffset + "px";
+        cursor.style.top = e.pageY + cursorOffset + "px";
+    });
+
+    btn.addEventListener('mouseover', function() {
+        cursor.src = "/resources/sprites/cursor-point-hover.png";
+        cursorTail.src = "/resources/sprites/cursor-tail.png";
+    });
+
+    btn.addEventListener('mouseout', function() {
+        cursor.src = "/resources/sprites/cursor-point.png";
+        cursorTail.src = "/resources/sprites/cursor-tail.png";
+    });
+
 </script>
