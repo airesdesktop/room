@@ -46,6 +46,7 @@
     var banner = document.getElementById("banner");
     var btn = document.getElementById("btn");
     var logo = document.getElementById("logo");
+    var foot = document.getElementById("foot");
 
     btn.addEventListener("click", () => {
         btn.style.border = "inset";
@@ -55,7 +56,8 @@
     function unlock() {
         clickfx.play();
         message.style.color = "red";
-        logo.src = "resources/sprites/logo-symbolic.png"
+        logo.src = "resources/images/logo-alt.webp"
+        foot.innerHTML = "MACROSYSTEMS INCORPORATED, SINCE 1988"
         banner.style.background = "url('resources/images/bg-alt.jpg')";
         message.innerHTML = "666 <br> HOST NOT FOUND"
         document.title = "WHO ARE YOU?";

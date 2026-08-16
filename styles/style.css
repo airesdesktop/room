@@ -13,6 +13,7 @@ html {
   /*cursor: url("/resources/sprites/cursor-standby.gif"), default;*/
   cursor: none;
   user-select: none;
+  overflow: hidden;
 }
 
 #visuals {
