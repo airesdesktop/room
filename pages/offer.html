@@ -15,7 +15,7 @@
         <video id="visuals">
             <source src="../resources/media/themessage_thewindow_cut_higher.mp4" type="video/mp4">
         </video>
-        <img src="../resources/sprites/blank.jpg" alt="nothing to see here." id="hider"/>
+        <img src="../resources/sprites/blank.jpg" alt="nothing to see here." id="overlay"/>
     </div>
 
     <div class="dialogue-with-visuals">
@@ -45,7 +45,7 @@
     var message = document.getElementById("message");
     const answerfx = new Audio("../resources/audio/interact.wav");
     var btn = document.getElementById("answerBtn");
-    var hider = document.getElementById("hider");
+    var hider = document.getElementById("overlay");
 
 
     //functions
@@ -56,7 +56,7 @@
         message.innerHTML = "* your throat tightens, it's hard to talk."
         btn.innerHTML = '(you do not have the right of speach this moment, nor at any point before or after this message...)';
         document.title = "at last, a breeze";
-        hider.remove();
+        //hider.remove();
         video.addEventListener('ended',function() {window.location.href = '../pages/end.html';})
     };
 

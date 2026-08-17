@@ -9,7 +9,7 @@ html {
   width: 100vw;
   margin: 0;
   padding: 0;
-  background-color: #000;
+  background-color: #222034;
   /*cursor: url("/resources/sprites/cursor-standby.gif"), default;*/
   cursor: none;
   user-select: none;
@@ -59,7 +59,8 @@ html {
   animation-iteration-count: infinite;
 }
 
-#hider {
+#overlay {
+    mix-blend-mode: lighten;
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -106,14 +107,14 @@ html {
   font-size: 18px;
   padding: 10px 10px 10px 10px;
   border: none;
-  background: #000;
+  background: #222034;
   color: #dddddd;
   cursor: none;
 }
 
 #answerBtn:hover {
   background: #dddddd;
-  color: black;
+  color: #222034;
   animation: shake 1.3s;
   animation-timing-function: step-end;
   animation-iteration-count: infinite;
